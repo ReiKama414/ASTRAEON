@@ -6,10 +6,11 @@ import * as THREE from 'three'
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import { findBody, type Celestial } from './data'
 import { useStore } from './store'
+import { asset } from './asset'
 import { DreamlikeUniverseShowcase } from './DreamlikeUniverseShowcase'
 import { EarthSystem } from './EarthSystem'
 
-const texture = (name: string) => `/textures/${name}.jpg`
+const texture = (name: string) => asset(`textures/${name}.jpg`)
 
 function CameraDirector({ body }: { body: Celestial }) {
   const { camera } = useThree()
@@ -112,7 +113,7 @@ function Sun() {
 }
 
 function Ring() {
-  const map = useTexture('/textures/saturn_ring.png')
+  const map = useTexture(asset('textures/saturn_ring.png'))
   const mat = useMemo(() => new THREE.ShaderMaterial({ transparent:true, side:THREE.DoubleSide, depthWrite:false, uniforms:{ ringMap:{value:map} }, vertexShader:`varying float vRadius; void main(){vRadius=length(position.xy);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`, fragmentShader:`uniform sampler2D ringMap;varying float vRadius;void main(){float t=clamp((vRadius-2.14)/(3.25-2.14),0.,1.);vec4 c=texture2D(ringMap,vec2(t,.5));gl_FragColor=vec4(c.rgb,c.a*.82);}` }), [map])
   return <mesh rotation={[-Math.PI / 2.65,0,0]}><ringGeometry args={[2.14,3.25,128]} /><primitive object={mat} attach="material" /></mesh>
 }

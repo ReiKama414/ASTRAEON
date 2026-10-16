@@ -2,6 +2,7 @@ import { Suspense, useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
+import { asset } from './asset'
 import { EarthSystem } from './EarthSystem'
 
 const planeVertex = `varying vec2 vUv; void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`
@@ -81,7 +82,7 @@ function random(i: number, salt: number) {
 }
 
 function DistantNebula() {
-  const map=useTexture('/showcase/nebula-distant.webp')
+  const map=useTexture(asset('showcase/nebula-distant.webp'))
   map.colorSpace=THREE.SRGBColorSpace
   const material=useMemo(()=>new THREE.ShaderMaterial({
     uniforms:{uMap:{value:map},uTime:{value:0}},vertexShader:planeVertex,fragmentShader:distantFragment,
@@ -92,7 +93,7 @@ function DistantNebula() {
 }
 
 function GasVeil({near=false}:{near?:boolean}) {
-  const map=useTexture('/showcase/nebula-foreground.webp')
+  const map=useTexture(asset('showcase/nebula-foreground.webp'))
   map.colorSpace=THREE.SRGBColorSpace
   const group=useRef<THREE.Group>(null)
   const material=useMemo(()=>new THREE.ShaderMaterial({

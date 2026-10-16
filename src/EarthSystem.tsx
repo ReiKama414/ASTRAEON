@@ -2,6 +2,7 @@ import { useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
+import { asset } from './asset'
 
 const radius = 2.42
 const earthVertex = `
@@ -80,8 +81,8 @@ export function EarthSystem() {
   const { size } = useThree()
   const mobile = size.width < 760
   const [day, night, cloud] = useTexture(mobile
-    ? ['/textures/earth_daymap.jpg','/textures/earth_nightmap.jpg','/textures/earth_clouds.jpg']
-    : ['/textures/earth_daymap_4k.jpg','/textures/earth_nightmap_4k.jpg','/textures/earth_clouds_4k.jpg'])
+    ? [asset('textures/earth_daymap.jpg'),asset('textures/earth_nightmap.jpg'),asset('textures/earth_clouds.jpg')]
+    : [asset('textures/earth_daymap_4k.jpg'),asset('textures/earth_nightmap_4k.jpg'),asset('textures/earth_clouds_4k.jpg')])
   day.colorSpace = THREE.SRGBColorSpace
   night.colorSpace = THREE.SRGBColorSpace
   cloud.colorSpace = THREE.SRGBColorSpace
