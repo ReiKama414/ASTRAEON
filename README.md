@@ -6,6 +6,8 @@
 
 授權：[MIT License](LICENSE)
 
+線上預覽：[GitHub Pages](https://reikama414.github.io/ASTRAEON/)
+
 ## 啟動
 
 需要 Node.js 20.19+ 或 22.12+。
