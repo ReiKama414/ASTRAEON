@@ -2,6 +2,10 @@
 
 互動式 3D 宇宙探索網站。使用 React、TypeScript、Vite、Three.js、React Three Fiber、drei、postprocessing 與 Zustand。
 
+> **來源註記：** 本專案是從磁碟翻出來的 **2024 庫存** 專案，重新整理後開源釋出。
+
+授權：[MIT License](LICENSE)
+
 ## 啟動
 
 需要 Node.js 20.19+ 或 22.12+。
